@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdsPrompt - Generator Prompt Konten Visual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Dark Mode Toggle -->
+        <div class="theme-toggle">
+            <button class="toggle-btn" id="theme-toggle" onclick="toggleDarkMode()">
+                <span class="toggle-icon">🌙</span>
+            </button>
+        </div>
+
+        <!-- Main -->
+        <main class="main">
+            <!-- Logo & Title Section (In Body) -->
+            <div class="title-section">
+                <h1 class="logo">AdsPrompt</h1>
+                <p class="tagline">Generator Prompt Konten Visual Profesional untuk Kreator & Marketer</p>
+                <p class="subtitle">Buat prompt AI berkualitas tinggi untuk desain visual Anda dalam hitungan detik</p>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="progress-container">
+                <div class="progress-steps">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-circle">1</div>
+                        <span class="step-label">Konten</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-circle">2</div>
+                        <span class="step-label">Kategori</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-circle">3</div>
+                        <span class="step-label">Detail</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1: Content Type -->
+            <section class="step-content active" id="step-1">
+                <div class="content-header">
+                    <h2>Pilih Jenis Konten</h2>
+                    <p>Apa yang ingin Anda buat?</p>
+                </div>
+
+                <div class="content-cards">
+                    <button class="content-btn" data-type="image">
+                        <span class="btn-icon">🖼</span>
+                        <span class="btn-name">Gambar</span>
+                    </button>
+                    <button class="content-btn" data-type="poster">
+                        <span class="btn-icon">📄</span>
+                        <span class="btn-name">Poster</span>
+                    </button>
+                    <button class="content-btn" data-type="banner">
+                        <span class="btn-icon">⬛</span>
+                        <span class="btn-name">Banner</span>
+                    </button>
+                    <button class="content-btn" data-type="brochure">
+                        <span class="btn-icon">📑</span>
+                        <span class="btn-name">Brosur</span>
+                    </button>
+                    <button class="content-btn" data-type="instagram">
+                        <span class="btn-icon">📱</span>
+                        <span class="btn-name">Feed IG</span>
+                    </button>
+                    <button class="content-btn" data-type="story">
+                        <span class="btn-icon">📲</span>
+                        <span class="btn-name">Story IG</span>
+                    </button>
+                    <button class="content-btn" data-type="flyer">
+                        <span class="btn-icon">📋</span>
+                        <span class="btn-name">Flyer</span>
+                    </button>
+                    <button class="content-btn" data-type="thumbnail">
+                        <span class="btn-icon">▶</span>
+                        <span class="btn-name">Thumbnail</span>
+                    </button>
+                    <button class="content-btn" data-type="infographic">
+                        <span class="btn-icon">📊</span>
+                        <span class="btn-name">Infografis</span>
+                    </button>
+                    <button class="content-btn" data-type="product">
+                        <span class="btn-icon">🛍</span>
+                        <span class="btn-name">Product Photo</span>
+                    </button>
+                    <button class="content-btn" data-type="ad">
+                        <span class="btn-icon">📢</span>
+                        <span class="btn-name">Ad Creative</span>
+                    </button>
+                    <button class="content-btn" data-type="hero">
+                        <span class="btn-icon">✨</span>
+                        <span class="btn-name">Hero Section</span>
+                    </button>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-next" onclick="goToStep(2)">Lanjut →</button>
+                </div>
+            </section>
+
+            <!-- Step 2: Category -->
+            <section class="step-content" id="step-2">
+                <div class="content-header">
+                    <h2>Pilih Kategori</h2>
+                    <p>Tujuan konten Anda</p>
+                </div>
+
+                <div class="category-items">
+                    <label class="category-option">
+                        <input type="radio" name="category" value="commercial">
+                        <div class="option-box">
+                            <span class="option-title">Komersial</span>
+                            <span class="option-desc">Promosi & penjualan</span>
+                        </div>
+                    </label>
+                    <label class="category-option">
+                        <input type="radio" name="category" value="education">
+                        <div class="option-box">
+                            <span class="option-title">Edukasi</span>
+                            <span class="option-desc">Pembelajaran & informatif</span>
+                        </div>
+                    </label>
+                    <label class="category-option">
+                        <input type="radio" name="category" value="entertainment">
+                        <div class="option-box">
+                            <span class="option-title">Hiburan</span>
+                            <span class="option-desc">Konten menyenangkan</span>
+                        </div>
+                    </label>
+                    <label class="category-option">
+                        <input type="radio" name="category" value="inspiration">
+                        <div class="option-box">
+                            <span class="option-title">Inspirasi</span>
+                            <span class="option-desc">Motivasi & inspiratif</span>
+                        </div>
+                    </label>
+                    <label class="category-option">
+                        <input type="radio" name="category" value="community">
+                        <div class="option-box">
+                            <span class="option-title">Komunitas</span>
+                            <span class="option-desc">Engagement & interaksi</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-back" onclick="goToStep(1)">← Kembali</button>
+                    <button class="btn-next" onclick="goToStep(3)">Lanjut →</button>
+                </div>
+            </section>
+
+            <!-- Step 3: Details -->
+            <section class="step-content" id="step-3">
+                <div class="content-header">
+                    <h2>Tambah Detail</h2>
+                    <p>Jelaskan konten Anda secara detail</p>
+                </div>
+
+                <form class="detail-form">
+                    <div class="form-group">
+                        <label for="title">Judul Konten</label>
+                        <input type="text" id="title" placeholder="Kampanye Musim Panas" maxlength="100">
+                        <div class="counter"><span id="title-count">0</span>/100</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Pesan Utama</label>
+                        <textarea id="description" placeholder="Jelaskan pesan utama konten Anda" maxlength="300" rows="5"></textarea>
+                        <div class="counter"><span id="desc-count">0</span>/300</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tone">Gaya & Nada</label>
+                            <select id="tone">
+                                <option value="">Pilih gaya...</option>
+                                <option value="professional">Profesional</option>
+                                <option value="casual">Santai & Ramah</option>
+                                <option value="creative">Kreatif & Berani</option>
+                                <option value="minimalist">Minimalis</option>
+                                <option value="vibrant">Vibrant</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="audience">Target Audiens</label>
+                            <select id="audience">
+                                <option value="">Pilih audiens...</option>
+                                <option value="general">Umum</option>
+                                <option value="teens">Remaja</option>
+                                <option value="young-adults">Dewasa Muda (18-35)</option>
+                                <option value="professionals">Profesional</option>
+                                <option value="parents">Keluarga</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colors">Preferensi Warna</label>
+                        <input type="text" id="colors" placeholder="Biru & Emas, Pastel Pink" maxlength="50">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo-upload">Referensi Foto / Logo (Opsional)</label>
+                        <div class="file-upload">
+                            <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                            <button type="button" class="upload-btn" onclick="document.getElementById('photo-upload').click()">
+                                Pilih Gambar
+                            </button>
+                            <span id="file-name" class="file-info"></span>
+                        </div>
+                        <div id="photo-preview" class="photo-preview"></div>
+                        <div id="photo-info" class="photo-info" style="display: none;">
+                            <p>File: <strong id="photo-filename"></strong></p>
+                            <button type="button" class="remove-btn" onclick="removePhoto()">Hapus</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="action-buttons">
+                    <button class="btn-back" onclick="goToStep(2)">← Kembali</button>
+                    <button class="btn-submit" onclick="generatePrompt()">Buat Prompt</button>
+                </div>
+            </section>
+
+            <!-- Results -->
+            <section class="step-content" id="results">
+                <div class="content-header">
+                    <h2>Prompt Siap Pakai</h2>
+                </div>
+
+                <div class="result-container">
+                    <div id="prompt-output" class="prompt-display"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-action" onclick="copyPrompt()">Salin Prompt</button>
+                    <button class="btn-action" onclick="downloadPrompt()">Unduh</button>
+                    <button class="btn-submit" onclick="generateNew()">Buat Baru</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
