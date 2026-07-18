@@ -6,9 +6,7 @@ const formState = {
     description: '',
     tone: '',
     audience: '',
-    colors: '',
-    photo: null,
-    photoBase64: null
+    colors: ''
 };
 
 // Dark Mode Management
@@ -57,7 +55,6 @@ function initializeEventListeners() {
     const toneSelect = document.getElementById('tone');
     const audienceSelect = document.getElementById('audience');
     const colorsInput = document.getElementById('colors');
-    const photoUpload = document.getElementById('photo-upload');
 
     if (titleInput) {
         titleInput.addEventListener('input', (e) => {
@@ -88,12 +85,6 @@ function initializeEventListeners() {
     if (colorsInput) {
         colorsInput.addEventListener('input', (e) => {
             formState.colors = e.target.value;
-        });
-    }
-
-    if (photoUpload) {
-        photoUpload.addEventListener('change', (e) => {
-            handlePhotoUpload(e);
         });
     }
 }
@@ -205,69 +196,6 @@ function selectContentType(btn) {
     formState.contentType = btn.dataset.type;
 }
 
-// Photo Upload Handler
-function handlePhotoUpload(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    // Validate file size (max 5MB)
-    const maxSize = 5 * 1024 * 1024;
-    if (file.size > maxSize) {
-        showError('Ukuran file terlalu besar (max 5MB)');
-        return;
-    }
-
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-        showError('File harus berupa gambar');
-        return;
-    }
-
-    // Store file name
-    formState.photo = file;
-
-    // Convert to Base64 for prompt inclusion
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        formState.photoBase64 = event.target.result;
-        displayPhotoPreview(file);
-    };
-    reader.readAsDataURL(file);
-}
-
-function displayPhotoPreview(file) {
-    // Update file name display
-    document.getElementById('file-name').textContent = `${file.name}`;
-
-    // Create preview image
-    const preview = document.getElementById('photo-preview');
-    preview.innerHTML = '';
-
-    const img = document.createElement('img');
-    img.src = formState.photoBase64;
-    preview.appendChild(img);
-
-    // Show file info
-    document.getElementById('photo-filename').textContent = file.name;
-    document.getElementById('photo-info').style.display = 'block';
-
-    showSuccess(`Foto "${file.name}" berhasil ditambahkan`);
-}
-
-function removePhoto() {
-    // Reset photo state
-    formState.photo = null;
-    formState.photoBase64 = null;
-
-    // Reset UI
-    document.getElementById('photo-upload').value = '';
-    document.getElementById('file-name').textContent = '';
-    document.getElementById('photo-preview').innerHTML = '';
-    document.getElementById('photo-info').style.display = 'none';
-
-    showSuccess('Foto berhasil dihapus');
-}
-
 // Generate Prompt
 function generatePrompt() {
     if (!validateStep(3)) {
@@ -328,12 +256,10 @@ Persyaratan Desain:
 - Gaya: ${toneDescriptions[state.tone] || 'modern dan bersih'}
 - Target Audiens: ${audienceDescriptions[state.audience] || 'audiens umum'}
 ${state.colors ? `- Skema Warna: ${state.colors}` : ''}
-${state.photo ? `- Referensi/Logo Disertakan: Ya (${state.photo.name})` : ''}
 
 Instruksi Desain:
 - Pastikan hierarki visual yang jelas dan keterbacaan optimal
 - Gunakan citra atau ilustrasi berkualitas tinggi dan profesional
-${state.photo ? '- Integrasikan referensi/logo yang disediakan dengan harmonis ke dalam desain' : ''}
 - Sertakan tipografi yang menarik sesuai dengan tema
 - Pertahankan konsistensi dalam jarak dan penyelarasan
 - Optimalkan untuk format dan platform yang ditentukan
@@ -416,8 +342,6 @@ function generateNew() {
     formState.tone = '';
     formState.audience = '';
     formState.colors = '';
-    formState.photo = null;
-    formState.photoBase64 = null;
 
     // Reset UI
     document.querySelectorAll('.content-btn').forEach(btn => {
@@ -433,10 +357,6 @@ function generateNew() {
     document.getElementById('tone').value = '';
     document.getElementById('audience').value = '';
     document.getElementById('colors').value = '';
-    document.getElementById('photo-upload').value = '';
-    document.getElementById('file-name').textContent = '';
-    document.getElementById('photo-preview').innerHTML = '';
-    document.getElementById('photo-info').style.display = 'none';
 
     updateCharCount('title-count', 0);
     updateCharCount('desc-count', 0);
